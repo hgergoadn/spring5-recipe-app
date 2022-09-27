@@ -3,6 +3,9 @@ package guru.springframework.domain;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Created by jt on 6/13/17.
+ */
 @Entity
 public class Recipe {
 
@@ -14,7 +17,7 @@ public class Recipe {
     private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
-    private String sources;
+    private String source;
     private String url;
     private String directions;
 
@@ -22,17 +25,18 @@ public class Recipe {
     private Set<Ingredient> ingredients;
 
     @Lob
-    private Byte[] Image;
+    private Byte[] image;
 
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
     @ManyToMany
     @JoinTable(name = "recipe_category",
-            joinColumns = @JoinColumn(name="recipe_id"),
-            inverseJoinColumns = @JoinColumn(name="category_id"))
+        joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
 
     public Long getId() {
@@ -75,12 +79,12 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public String getSources() {
-        return sources;
+    public String getSource() {
+        return source;
     }
 
-    public void setSources(String sources) {
-        this.sources = sources;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getUrl() {
@@ -100,11 +104,11 @@ public class Recipe {
     }
 
     public Byte[] getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(Byte[] image) {
-        Image = image;
+        this.image = image;
     }
 
     public Notes getNotes() {
